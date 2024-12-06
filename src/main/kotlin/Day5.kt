@@ -21,7 +21,7 @@ fun main() {
 
     val answerPart1 = updates.filter { update -> update.isOrdered() }
         .sumOf { update -> update[(update.size - 1)/2] }
-    println(answerPart1)
+    println("Answer part 1: $answerPart1")
 
     class Ordering: Comparator<Int> {
         override fun compare(o1: Int, o2: Int): Int {
@@ -33,6 +33,6 @@ fun main() {
 
     val answerPart2 = updates.filterNot { it.isOrdered() }
         .sumOf { update -> update.sortedWith(Ordering())[(update.size - 1)/2] }
-    println(answerPart2)
+    println("Answer part 2: $answerPart2")
 }
 

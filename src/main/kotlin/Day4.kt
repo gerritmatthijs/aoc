@@ -24,12 +24,12 @@ fun main() {
     val answerPart1 = listOf(horizontal, vertical, mainDiag, offDiag).flatMap { m -> listOf(m, m.map { it.reversed() }) }
         .sumOf { Regex("XMAS").findAll(it.concatToString()).count() }
 
-    println(answerPart1)
+    println("Answer part 1: $answerPart1")
 
     val answerPart2 = (1..(contents.size-2)).sumOf { row ->
         (1..(contents.size-2)).count { col -> checkPosition(row, col) }
     }
-    println(answerPart2)
+    println("Answer part 2: $answerPart2")
 }
 
 fun List<List<Char>>.concatToString(): String = joinToString("\n") { it.joinToString("") }
