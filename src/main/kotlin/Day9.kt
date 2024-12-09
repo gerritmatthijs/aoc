@@ -13,9 +13,7 @@ fun main() {
         val leftIsBlockFile: Boolean
     )
 
-    fun List<Int>.calculateCheckSum(currentIndex: Int) = this.indices.sumOf { i -> (i + currentIndex) * this[i] }
-
-    tailrec fun compactifyAndUpdateCheckSum(diskMap: List<Int>, currentLeftID: Int, currentRightID: Int, leftIsBlockFile: Boolean, accumulatedResult: Long, currentIndex: Int): Long{
+    tailrec fun compactify(diskMap: List<Int>, currentLeftID: Int, currentRightID: Int, leftIsBlockFile: Boolean, accumulatedResult: List<Int>): List<Int> {
         val (newResultPiece, nextInput) = when {
             diskMap.isEmpty() -> return accumulatedResult
             leftIsBlockFile -> List(diskMap.first()) { currentLeftID } to CompactifyInput(diskMap.drop(1), currentLeftID + 1, currentRightID, false)
@@ -32,17 +30,13 @@ fun main() {
             )
             else -> throw Exception("Won't happen")
         }
-        return compactifyAndUpdateCheckSum(nextInput.diskMap,
-            nextInput.currentLeftID,
-            nextInput.currentRightID,
-            nextInput.leftIsBlockFile,
-            accumulatedResult + newResultPiece.calculateCheckSum(currentIndex),
-            currentIndex + newResultPiece.size
-        )
+        return compactify(nextInput.diskMap, nextInput.currentLeftID, nextInput.currentRightID, nextInput.leftIsBlockFile, accumulatedResult + newResultPiece)
     }
 
+    fun List<Int>.calculateCheckSum() = this.indices.sumOf { i -> i.toLong() * this[i] }
+
     measureTime {
-        val answerPart1 = compactifyAndUpdateCheckSum(input, 0, (input.size + 1)/2, true, 0L, 0)
+        val answerPart1 = compactify(input, 0, (input.size - 1)/2, true, emptyList()).calculateCheckSum()
         println("Answer part 1: $answerPart1")
     }.also { println("Time taken: $it") }
 
