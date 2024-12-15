@@ -4,8 +4,7 @@ import java.io.File
 
 fun main() {
     val grid = File("./src/main/resources/day10_input.txt").readLines()
-        .map { line -> line.toList().map { it.toString().toInt() } }
-        .let { Grid(it) }
+        .map { line -> line.toList().map { it.toString().toInt() } }.toGrid()
 
     fun Iterable<Coordinate>.getAdjacentPoints(current: Int) = flatMap { (i, j) ->
             listOf(i + 1 to j, i - 1 to j, i to j + 1, i to j - 1).filter { (k, l) ->

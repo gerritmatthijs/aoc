@@ -22,7 +22,7 @@ fun main() {
                 currentLeftID, currentRightID - 1,  false
             )
             diskMap.first() < diskMap.last() -> List(diskMap.first()) { currentRightID } to CompactifyInput(
-                diskMap.drop(1).dropLast(1) + listOf(diskMap.last() - diskMap.first()),
+                diskMap.drop(1).dropLast(1) + (diskMap.last() - diskMap.first()),
                 currentLeftID, currentRightID, true
             )
             diskMap.first() == diskMap.last() -> List(diskMap.first()) { currentRightID } to CompactifyInput(
