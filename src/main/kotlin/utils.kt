@@ -21,10 +21,17 @@ class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
 
 fun<T> List<List<T>>.toGrid() = Grid(this)
 
-
 typealias Coordinate = Pair<Int, Int>
 
+typealias LongCoordinate = Pair<Long, Long>
+
 fun Coordinate.getAdjacents() = let { (i, j) -> listOf(i-1 to j, i to j+1, i+1 to j, i to j-1) }
+
+val <N: Number>Pair<N, N>.x: N
+    get() = first
+
+val <N: Number>Pair<N, N>.y: N
+    get() = second
 
 fun main() {
     val grid = Grid(listOf(listOf(1, 2), listOf(3, 4)))
