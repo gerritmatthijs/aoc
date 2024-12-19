@@ -50,6 +50,8 @@ typealias LongCoordinate = Pair<Long, Long>
 
 fun Coordinate.getAdjacents() = let { (i, j) -> listOf(i-1 to j, i to j+1, i+1 to j, i to j-1) }
 
+fun<T> Coordinate.isWithinGrid(grid: Grid<T>) = x >= 0 && x < grid.vSize && y >= 0 && y < grid.hSize
+
 val <N: Number>Pair<N, N>.x: N
     get() = first
 
