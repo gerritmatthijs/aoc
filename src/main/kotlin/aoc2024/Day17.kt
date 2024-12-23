@@ -1,4 +1,4 @@
-package org.example
+package aoc2024
 
 import kotlin.math.ceil
 import kotlin.math.log

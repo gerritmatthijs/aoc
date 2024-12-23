@@ -1,5 +1,6 @@
-package org.example
+package aoc2024
 
+import utils.*
 import java.io.File
 
 fun main() {

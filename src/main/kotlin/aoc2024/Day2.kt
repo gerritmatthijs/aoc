@@ -1,4 +1,4 @@
-package org.example
+package aoc2024
 
 import java.io.File
 import kotlin.math.abs

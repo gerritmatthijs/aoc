@@ -1,5 +1,9 @@
-package org.example
+package aoc2024
 
+import utils.Coordinate
+import utils.LongCoordinate
+import utils.x
+import utils.y
 import java.io.File
 
 // n * x1 + m * x2 = x3
@@ -9,7 +13,7 @@ import java.io.File
 // m = (y3 * x1 / y1 - x3) / (x1 * y2 / y1 - x2)
 
 fun main() {
-    val machines = File("./src/main/resources/day13_input.txt").readText().split("\n\n").map { machineText ->
+    val machines = File("./src/main/resources/day13_input.txt").readText().split("\n\n").also(::println).map { machineText ->
         machineText.split("\n").map { line ->
             "[0-9]{1,5}".toRegex().findAll(line).toList().map {
                 it.groupValues.first().toInt()
@@ -17,7 +21,7 @@ fun main() {
         }
     }.map { (result1, result2, result3) ->
         Machine(result1.first() to result1.last(), result2.first() to result2.last(), result3.first().toLong() to result3.last().toLong())
-    }
+    }.also(::println)
 
     fun Machine.calculateSolution() : Pair<Long, Long>? {
         val numerator = prize.y * A.x - prize.x * A.y

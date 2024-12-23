@@ -1,5 +1,6 @@
-package org.example
+package aoc2024
 
+import utils.stripWindowsLineFeed
 import java.io.File
 import kotlin.time.measureTime
 

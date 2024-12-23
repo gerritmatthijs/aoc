@@ -1,8 +1,6 @@
-package org.example
+package aoc2024
 
 import java.io.File
-import kotlin.math.pow
-import kotlin.time.measureTime
 
 fun main() {
     val equations = File("./src/main/resources/day7_input.txt").readLines()

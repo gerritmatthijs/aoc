@@ -1,5 +1,7 @@
-package org.example
+package aoc2024
 
+import utils.Coordinate
+import utils.toGrid
 import java.io.File
 
 fun main() {

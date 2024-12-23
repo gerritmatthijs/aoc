@@ -1,4 +1,4 @@
-package org.example
+package utils
 
 class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
     private val flattened = contents.flatten()
@@ -71,21 +71,21 @@ fun Coordinate.getAdjacent(direction: Direction) = when (direction) {
 
 fun String.stripWindowsLineFeed() = replace("\r", "")
 
-fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
-    val visitedNodes = mutableListOf<Pair<T, Long>>()
-    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
-
-    fun <T> dijkstraRecursive(visitedNodes: List<Pair<T, Long>>, reachableNodes: List<Pair<T, Long>>): Pair<List<Pair<T, Long>>, List<Pair<T, Long>>> {
-        val nextNode = reachableNodes.minByOrNull { it.second }
-        edges[nextNode.first]!!.forEach {
-
-        }
-    }
-
-    fun step() {
-        val nextNode = reachableNodes.minByOrNull { it.second }
-    }
-}
+//fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
+//    val visitedNodes = mutableListOf<Pair<T, Long>>()
+//    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
+//
+//    fun <T> dijkstraRecursive(visitedNodes: List<Pair<T, Long>>, reachableNodes: List<Pair<T, Long>>): Pair<List<Pair<T, Long>>, List<Pair<T, Long>>> {
+//        val nextNode = reachableNodes.minByOrNull { it.second }
+//        edges[nextNode.first]!!.forEach {
+//
+//        }
+//    }
+//
+//    fun step() {
+//        val nextNode = reachableNodes.minByOrNull { it.second }
+//    }
+//}
 
 
 

@@ -1,7 +1,9 @@
-package org.example
+package aoc2024
 
+import utils.Coordinate
+import utils.getAdjacents
+import utils.toGrid
 import java.io.File
-import kotlin.time.measureTime
 
 fun main() {
     val garden = File("./src/main/resources/day12_input.txt").readLines().map { it.toList() }.toGrid()
