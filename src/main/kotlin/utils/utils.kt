@@ -1,5 +1,7 @@
 package utils
 
+import kotlin.math.pow
+
 class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
     private val flattened = contents.flatten()
     val hSize = contents.size
@@ -70,6 +72,10 @@ fun Coordinate.getAdjacent(direction: Direction) = when (direction) {
 }
 
 fun String.stripWindowsLineFeed() = replace("\r", "")
+
+fun List<Boolean>.convertBinaryToLong() = mapIndexed { index, value ->
+    if (value) 2.0.pow(index).toLong() else 0
+}.sum()
 
 //fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
 //    val visitedNodes = mutableListOf<Pair<T, Long>>()
