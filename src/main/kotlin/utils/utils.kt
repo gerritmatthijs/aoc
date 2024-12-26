@@ -77,6 +77,8 @@ fun List<Boolean>.convertBinaryToLong() = mapIndexed { index, value ->
     if (value) 2.0.pow(index).toLong() else 0
 }.sum()
 
+fun<T> List<T>.print() = forEach { println(it) }
+
 //fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
 //    val visitedNodes = mutableListOf<Pair<T, Long>>()
 //    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
