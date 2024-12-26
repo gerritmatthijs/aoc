@@ -40,6 +40,10 @@ class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
     fun map(block: (T) -> T): Grid<T> = contents.map { row -> row.map(block)}.toGrid()
 
     fun flatMap(block: (T) -> List<T>): Grid<T> = contents.map { row -> row.flatMap(block) }.toGrid()
+
+    fun transpose() = contents[0].indices.map { i ->
+        contents.indices.map { j -> this[j, i] }
+    }
 }
 
 fun<T> List<List<T>>.toGrid() = Grid(this)
@@ -99,6 +103,6 @@ fun<T> List<T>.print() = forEach { println(it) }
 
 
 fun main() {
-    val grid = Grid(listOf(listOf(1, 2), listOf(3, 4)))
-    println(grid)
+    val grid = Grid(listOf(listOf(1, 2), listOf(3, 4), listOf(5, 6)))
+    println(grid.transpose())
 }
