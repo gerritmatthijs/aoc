@@ -1,5 +1,6 @@
 package aoc2024
 
+import utils.findIndexOfSublist
 import java.io.File
 import kotlin.time.measureTime
 
@@ -40,5 +41,30 @@ fun main() {
         println("Answer part 1: $answerPart1")
     }.also { println("Time taken: $it") }
 
+    val extendedInput = input.flatMapIndexed { index: Int, size: Int ->
+        if (index % 2 == 0) List(size) { index / 2 }
+        else List(size) { -1 }
+    }
+
+    tailrec fun List<Int>.compactify(currentValue: Int): List<Int> {
+        val endIndex = indexOfLast { it == currentValue }
+        val startIndex = subList(0, endIndex).indexOfLast { it != currentValue } + 1
+        val fileSize = endIndex - startIndex + 1
+        val changedList = subList(0, startIndex).findIndexOfSublist(List(fileSize) { -1 })?.let { destinationStart ->
+            (subList(0, destinationStart) + List(fileSize) { currentValue } + subList(destinationStart + fileSize, startIndex) +
+                    List(fileSize) { -1 } + subList(endIndex + 1, size))
+        } ?: this
+        return if (currentValue == 1) changedList else changedList.compactify(currentValue - 1)
+    }
+
+    measureTime {
+        val compactedInput = extendedInput.compactify(extendedInput.last()).also(::println)
+        val answerPart2 = compactedInput.mapIndexed { index, value ->
+            if (value == -1) 0L else index.toLong() * value
+        }.sum()
+        println("Index of 5421: ${compactedInput.indexOf(5421)}")
+        println("Original index of 5421: ${extendedInput.indexOf(5421)}")
+        println("Answer part 2: $answerPart2")
+    }.also { println("Time taken: $it") }
 }
 
