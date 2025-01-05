@@ -68,6 +68,10 @@ enum class Direction{
     UP, RIGHT, DOWN, LEFT
 }
 
+enum class KingDirections {
+    RIGHT, UP, LEFT, DOWN, UPRIGHT, RIGHTUP, DOWNRIGHT, RIGHTDOWN, LEFTUP, UPLEFT, LEFTDOWN, DOWNLEFT
+}
+
 fun Coordinate.getAdjacent(direction: Direction) = when (direction) {
     Direction.UP -> x-1 to y
     Direction.RIGHT -> x to y+1
