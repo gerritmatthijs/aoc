@@ -13,7 +13,7 @@ import kotlin.time.measureTime
 // - kfp and hbs
 
 fun main() {
-    val (startingActiveWires, gates) = File("./src/main/resources/day24_input.txt").readText().stripWindowsLineFeed()
+    val (startingActiveWires, gates) = File("./src/main/resources/aoc2024/day24_input.txt").readText().stripWindowsLineFeed()
         .split("\n\n").let {
             (firstPart, secondPart) -> firstPart.toActiveWires() to
                 secondPart.split("\n").map { it.toGate() }
@@ -51,7 +51,7 @@ fun main() {
         println("Answer part 1: $answerPart1")
     }.also { println("Time taken: $it") }
 
-    val (_, correctedGates) = File("./src/main/resources/day24_corrected_input.txt").readText().stripWindowsLineFeed()
+    val (_, correctedGates) = File("./src/main/resources/aoc2024/day24_corrected_input.txt").readText().stripWindowsLineFeed()
         .split("\n\n").let {
                 (firstPart, secondPart) -> firstPart.toActiveWires() to
                 secondPart.split("\n").map { it.toGate() }

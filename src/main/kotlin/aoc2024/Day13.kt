@@ -13,7 +13,7 @@ import java.io.File
 // m = (y3 * x1 / y1 - x3) / (x1 * y2 / y1 - x2)
 
 fun main() {
-    val machines = File("./src/main/resources/day13_input.txt").readText().split("\n\n").also(::println).map { machineText ->
+    val machines = File("./src/main/resources/aoc2024/day13_input.txt").readText().split("\n\n").also(::println).map { machineText ->
         machineText.split("\n").map { line ->
             "[0-9]{1,5}".toRegex().findAll(line).toList().map {
                 it.groupValues.first().toInt()

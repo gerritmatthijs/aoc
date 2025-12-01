@@ -11,7 +11,7 @@ fun main() {
     fun String.toKey() = toGrid().transpose().map { it.indexOf('.') - 1 }
     fun String.toLock() = toGrid().transpose().map { 6 - it.indexOf('#') }
 
-    val (keys, locks) = File("./src/main/resources/day25_input.txt").readText().stripWindowsLineFeed()
+    val (keys, locks) = File("./src/main/resources/aoc2024/day25_input.txt").readText().stripWindowsLineFeed()
         .split("\n\n").groupBy { it.first() }.let {
             it['#']!!.map { keyString -> keyString.toKey() } to
                     it['.']!!.map { lockString -> lockString.toLock() }

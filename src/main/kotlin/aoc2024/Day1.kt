@@ -4,7 +4,7 @@ import java.io.File
 import kotlin.math.abs
 
 fun main() {
-    val contents = File("./src/main/resources/day1_part1_input.txt").readLines()
+    val contents = File("./src/main/resources/aoc2024/day1_part1_input.txt").readLines()
         .map { it.split("   ").map(String::toInt) }
     val part1Result = (contents.map { it.first() }.sorted() zip contents.map { it.last() }.sorted())
         .sumOf { (first, second) -> abs(first - second) }

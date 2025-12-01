@@ -4,7 +4,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val (availableTowels, patterns) = File("./src/main/resources/day19_input.txt").readText().split("\n\n").let { (towels, patterns) ->
+    val (availableTowels, patterns) = File("./src/main/resources/aoc2024/day19_input.txt").readText().split("\n\n").let { (towels, patterns) ->
         towels.split(", ") to patterns.split("\n")
     }
 

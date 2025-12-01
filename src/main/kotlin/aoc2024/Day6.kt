@@ -4,7 +4,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val grid = File("./src/main/resources/day6_input.txt").readLines().map { it.toList() }
+    val grid = File("./src/main/resources/aoc2024/day6_input.txt").readLines().map { it.toList() }
 
     fun List<List<Char>>.print() = onEach { println(it) }
 

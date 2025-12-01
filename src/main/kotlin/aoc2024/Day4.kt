@@ -3,7 +3,7 @@ package aoc2024
 import java.io.File
 
 fun main() {
-    val contents = File("./src/main/resources/day4_input.txt").readLines().map { it.toCharArray().toList() }
+    val contents = File("./src/main/resources/aoc2024/day4_input.txt").readLines().map { it.toCharArray().toList() }
 
     fun checkPosition(row: Int, col: Int): Boolean =
         contents[row][col] == 'A' && listOf(contents[row-1][col-1], contents[row-1][col+1], contents[row+1][col-1], contents[row+1][col+1]).let { chars ->

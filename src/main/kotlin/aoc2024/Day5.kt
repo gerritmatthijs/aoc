@@ -3,7 +3,7 @@ package aoc2024
 import java.io.File
 
 fun main() {
-    val (ordering, updates) = File("./src/main/resources/day5_input.txt").readLines().let { lines ->
+    val (ordering, updates) = File("./src/main/resources/aoc2024/day5_input.txt").readLines().let { lines ->
         lines.subList(0, lines.indexOf("")).map { it.split('|').map(String::toInt) } to
                 lines.subList(lines.indexOf("") + 1, lines.size).map { it.split(',').map(String::toInt) }
     }

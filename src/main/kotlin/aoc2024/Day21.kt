@@ -7,7 +7,7 @@ import kotlin.math.min
 import kotlin.time.measureTime
 
 fun main() {
-    val codes = File("./src/main/resources/day21_input.txt").readLines().map { it.stripWindowsLineFeed() }
+    val codes = File("./src/main/resources/aoc2024/day21_input.txt").readLines().map { it.stripWindowsLineFeed() }
 
     measureTime {
         val finalVectorPart1 = (1..2).fold(initialVector) { vector, _ -> vector.getNextVector() }

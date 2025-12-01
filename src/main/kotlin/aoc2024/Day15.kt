@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val (grid, instructions) = File("./src/main/resources/day15_input.txt").readText().stripWindowsLineFeed()
+    val (grid, instructions) = File("./src/main/resources/aoc2024/day15_input.txt").readText().stripWindowsLineFeed()
         .split("\n\n").let { (part1, part2) ->
             part1.toGrid() to part2.replace("\n", "")
         }

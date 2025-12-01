@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val startingPrices = File("./src/main/resources/day22_input.txt").readLines().map { it.stripWindowsLineFeed().toInt() }
+    val startingPrices = File("./src/main/resources/aoc2024/day22_input.txt").readLines().map { it.stripWindowsLineFeed().toInt() }
     val modulo = 16777216
 
     fun Long.mixAndPrune(otherNumberCalculator: (Long) -> Long) = (this xor otherNumberCalculator(this)) % modulo

@@ -4,7 +4,7 @@ import java.io.File
 import kotlin.math.abs
 
 fun main() {
-    val contents = File("./src/main/resources/day2_input.txt").readLines()
+    val contents = File("./src/main/resources/aoc2024/day2_input.txt").readLines()
         .map { it.split(" ").map(String::toInt) }
     val answerPart1 = contents.count { it.checkSafe() }
     println(answerPart1)

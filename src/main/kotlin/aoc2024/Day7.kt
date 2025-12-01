@@ -3,7 +3,7 @@ package aoc2024
 import java.io.File
 
 fun main() {
-    val equations = File("./src/main/resources/day7_input.txt").readLines()
+    val equations = File("./src/main/resources/aoc2024/day7_input.txt").readLines()
         .map { it.split(": ") }.map { (total, rest) -> total.toLong() to rest.split(' ').map(String::toInt) }
 
     fun operate(x: Long, y: Int, operation: Int) = when (operation) {

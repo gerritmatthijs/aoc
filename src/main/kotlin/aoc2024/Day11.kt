@@ -4,7 +4,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val initialStones = File("./src/main/resources/day11_input.txt").readText().split(" ")
+    val initialStones = File("./src/main/resources/aoc2024/day11_input.txt").readText().split(" ")
 //    val initialStones = listOf("125", "17")
 
     fun String.removeZeroes(): String = if (this[0] == '0' && length > 1) drop(1).removeZeroes() else this

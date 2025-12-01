@@ -3,7 +3,7 @@ package aoc2024
 import java.io.File
 
 fun main() {
-    val contents = File("./src/main/resources/day3_input.txt").readText()
+    val contents = File("./src/main/resources/aoc2024/day3_input.txt").readText()
     val regexPart1 = "mul\\(([0-9]{1,3}),([0-9]{1,3})\\)".toRegex()
     val answerPart1 = regexPart1.findAll(contents).map { it.destructured }.sumOf { (a, b) -> a.toInt() * b.toInt() }
     println("Answer part 1: $answerPart1")

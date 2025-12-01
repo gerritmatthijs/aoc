@@ -4,7 +4,7 @@ import utils.*
 import java.io.File
 
 fun main() {
-    val grid = File("./src/main/resources/day8_input.txt").readLines().map { it.toList() }.toGrid()
+    val grid = File("./src/main/resources/aoc2024/day8_input.txt").readLines().map { it.toList() }.toGrid()
     val antennas = grid.indices.filterNot { (i, j) -> grid[i,j] == '.' }.groupBy { (i, j) -> grid[i, j] }
 
     fun Pair<Coordinate, Coordinate>.getSingleAntinodes() = let { (a, b) ->

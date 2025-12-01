@@ -6,7 +6,7 @@ import utils.toGrid
 import java.io.File
 
 fun main() {
-    val garden = File("./src/main/resources/day12_input.txt").readLines().map { it.toList() }.toGrid()
+    val garden = File("./src/main/resources/aoc2024/day12_input.txt").readLines().map { it.toList() }.toGrid()
 
     val regions = mutableListOf<MutableSet<Coordinate>>()
 

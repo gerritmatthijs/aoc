@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.time.measureTime
 
 fun main() {
-    val input = File("./src/main/resources/day9_input.txt").readText().toList().map { it.toString().toInt() }
+    val input = File("./src/main/resources/aoc2024/day9_input.txt").readText().toList().map { it.toString().toInt() }
 
     data class CompactifyInput(
         val diskMap: List<Int>,
