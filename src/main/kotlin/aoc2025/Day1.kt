@@ -19,7 +19,7 @@ fun main() {
 
     val answerPart2 = calculateAnswer { lastPosition, newNumber ->
         val (hundreds, remainder) = (abs(newNumber) / 100) to newNumber % 100
-        hundreds + if (lastPosition == 0 || remainder == 0 || lastPosition + remainder in 1..99) 0 else 1
+        hundreds + if (lastPosition == 0 || lastPosition + remainder in 1..99) 0 else 1
     }
     println("answer part 2: $answerPart2")
 }
