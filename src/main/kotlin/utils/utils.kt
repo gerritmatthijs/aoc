@@ -10,6 +10,12 @@ class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
         contents[i].indices.map { j -> i to j }
     }
 
+    override fun equals(other: Any?): Boolean {
+        return other is Grid<T> && other.contents == contents
+    }
+
+    override fun hashCode() = contents.hashCode()
+
     operator fun get(i: Int, j: Int) = contents[i][j]
 
     operator fun get(i: Int) = contents[i]
@@ -37,7 +43,9 @@ class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
         row to contents[row].indexOf(element)
     }
 
-    fun map(block: (T) -> T): Grid<T> = contents.map { row -> row.map(block)}.toGrid()
+    fun<R> map(block: (T) -> R): Grid<R> = contents.map { row -> row.map(block)}.toGrid()
+
+    fun<R> mapIndexed(block: (Coordinate, T) -> R): Grid<R> = contents.mapIndexed { i, row -> row.mapIndexed { j, value -> block(i to j, value) } }.toGrid()
 
     fun flatMap(block: (T) -> List<T>): Grid<T> = contents.map { row -> row.flatMap(block) }.toGrid()
 
