@@ -56,6 +56,10 @@ typealias LongCoordinate = Pair<Long, Long>
 
 fun Coordinate.getAdjacents() = let { (i, j) -> listOf(i-1 to j, i to j+1, i+1 to j, i to j-1) }
 
+fun Coordinate.getSurrounding() = getAdjacents() + let { (i, j) -> listOf(i-1 to j-1, i-1 to j+1, i+1 to j+1, i+1 to j-1)}
+
+fun Coordinate.getSurroundingWithinGrid(grid: Grid<*>): List<Coordinate> = getSurrounding().filter { it.isWithinGrid(grid) }
+
 fun<T> Coordinate.isWithinGrid(grid: Grid<T>) = x >= 0 && x < grid.vSize && y >= 0 && y < grid.hSize
 
 val <N: Number>Pair<N, N>.x: N
