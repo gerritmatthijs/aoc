@@ -101,6 +101,13 @@ fun<T> List<T>.print() = forEach { println(it) }
 
 fun<T> List<T>.findIndexOfSublist(list: List<T>) = indices.find { index -> index < size - list.size && subList(index, index + list.size) == list }
 
+fun List<String>.transpose(): List<String> {
+    val maxRowLength = maxOf(String::length)
+    return (0..<maxRowLength).map { j ->
+        indices.map { i -> this[i].getOrNull(j) ?: ' ' }.joinToString("")
+    }
+}
+
 //fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
 //    val visitedNodes = mutableListOf<Pair<T, Long>>()
 //    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
