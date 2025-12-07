@@ -4,8 +4,8 @@ import kotlin.math.pow
 
 class Grid<T>(private val contents: List<List<T>>) : Iterable<T> {
     private val flattened = contents.flatten()
-    val hSize = contents.size
-    val vSize = contents.first().size
+    val vSize = contents.size
+    val hSize = contents.first().size
     val indices: List<Coordinate> = contents.indices.flatMap { i ->
         contents[i].indices.map { j -> i to j }
     }
@@ -68,7 +68,7 @@ fun Coordinate.getSurrounding() = getAdjacents() + let { (i, j) -> listOf(i-1 to
 
 fun Coordinate.getSurroundingWithinGrid(grid: Grid<*>): List<Coordinate> = getSurrounding().filter { it.isWithinGrid(grid) }
 
-fun<T> Coordinate.isWithinGrid(grid: Grid<T>) = x >= 0 && x < grid.vSize && y >= 0 && y < grid.hSize
+fun<T> Coordinate.isWithinGrid(grid: Grid<T>) = x >= 0 && x < grid.hSize && y >= 0 && y < grid.vSize
 
 val <N: Number>Pair<N, N>.x: N
     get() = first

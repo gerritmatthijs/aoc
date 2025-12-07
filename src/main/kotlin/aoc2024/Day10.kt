@@ -10,7 +10,7 @@ fun main() {
 
     fun Iterable<Coordinate>.getAdjacentPoints(current: Int) = flatMap { (i, j) ->
             listOf(i + 1 to j, i - 1 to j, i to j + 1, i to j - 1).filter { (k, l) ->
-                k >= 0 && l >= 0 && k < grid.hSize && l < grid.vSize && grid[k, l] == current + 1
+                k >= 0 && l >= 0 && k < grid.vSize && l < grid.hSize && grid[k, l] == current + 1
             }
         }
 
