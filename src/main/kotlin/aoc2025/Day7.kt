@@ -15,4 +15,14 @@ fun main() {
     }.second
 
     println("Answer part 1: $answerPart1")
+
+    val aggregatedBeams = (0..<manifold.vSize).fold(mapOf(startingBeamPosition to 1L)) { beams, rowIndex ->
+        val newBeams = beams.flatMap { (beam, count) ->
+            (if (manifold[rowIndex, beam] == '^') listOf(beam - 1, beam + 1) else listOf(beam)).map { it to count }
+        }
+        newBeams.groupBy({ it.first }) { it.second }.mapValues { (_, values) ->
+            values.sum()
+        }
+    }
+    println("Answer part 2: ${aggregatedBeams.values.sum()}")
 }
