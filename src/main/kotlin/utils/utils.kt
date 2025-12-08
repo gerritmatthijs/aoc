@@ -108,9 +108,6 @@ fun List<String>.transpose(): List<String> {
     }
 }
 
-fun<T, R> Iterable<T>.foldWhile(initial: R, predicate: (R, T) -> Boolean, block: (R, T) -> R) =
-    fold(initial) { acc, element -> if (predicate(acc, element)) block(acc, element) else acc }
-
 //fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
 //    val visitedNodes = mutableListOf<Pair<T, Long>>()
 //    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
