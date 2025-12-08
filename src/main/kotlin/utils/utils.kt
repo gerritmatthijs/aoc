@@ -97,7 +97,7 @@ fun List<Boolean>.convertBinaryToLong() = mapIndexed { index, value ->
     if (value) 2.0.pow(index).toLong() else 0
 }.sum()
 
-fun<T> List<T>.print() = forEach { println(it) }
+fun<T> Collection<T>.print() = forEach { println(it) }
 
 fun<T> List<T>.findIndexOfSublist(list: List<T>) = indices.find { index -> index < size - list.size && subList(index, index + list.size) == list }
 
