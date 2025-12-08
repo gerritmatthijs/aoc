@@ -1,6 +1,5 @@
 package aoc2025
 
-import utils.print
 import java.io.File
 import kotlin.time.measureTime
 
@@ -10,25 +9,42 @@ fun main() {
         .map { it.split(",").map(String::toInt).toCoordinate() }
     val numberOfConnections = if (testInput) 10 else 1000
     measureTime {
-        val closestBoxPairs = boxCoordinates.flatMap { box1 ->
+        val boxPairs = boxCoordinates.flatMap { box1 ->
             boxCoordinates.mapNotNull { box2 -> setOf(box1, box2).takeIf { it.size > 1 } }
         }.toSet().map { it.toList() }
-            .sortedBy { (box1, box2) -> box1 distanceTo box2 }.take(numberOfConnections)
-        val circuits = closestBoxPairs.fold(emptyList<List<Coordinate>>()) { circuits, newPair ->
-            val (box1, box2) = newPair
-            val (set1, set2) = newPair.map { box -> circuits.find { it.contains(box) } }
-            when {
-                (set1 ?: set2) == null -> circuits + listOf(newPair)
-                set1 != null && set2 == null -> circuits.addElementToSublist(set1, box2)
-                set1 == null && set2 != null -> circuits.addElementToSublist(set2, box1)
-                set1 != null && set1 == set2 -> circuits
-                set1 != null && set2 != null -> circuits.filterNot { circuit -> newPair.any { circuit.contains(it)} } + listOf(set1 + set2)
-                else -> throw IllegalArgumentException("Won't happen")
-            }
+            .sortedBy { (box1, box2) -> box1 distanceTo box2 }
+        val circuits = boxPairs.take(numberOfConnections).fold(emptyList<List<Coordinate>>()) { circuits, newPair ->
+            updateCircuits(newPair, circuits)
         }
         val answerPart1 = circuits.map { it.size }.sortedDescending().take(3).reduce(Int::times)
         println("Answer part 1: $answerPart1")
+
+        val lastBoxPair = boxPairs.fold(emptyList<List<Coordinate>>() to boxPairs.first()) { (circuits, lastBoxPair), newPair ->
+            if (circuits.firstOrNull()?.size == boxCoordinates.size) circuits to lastBoxPair
+            else updateCircuits(newPair, circuits) to newPair
+        }.second
+        println("Answer part 2: ${lastBoxPair.first().x * lastBoxPair.last().x}")
     }.also { println("Time taken: $it") }
+
+}
+
+private fun updateCircuits(
+    newPair: List<Coordinate>,
+    circuits: List<List<Coordinate>>,
+): List<List<Coordinate>> {
+    val (box1, box2) = newPair
+    val (set1, set2) = newPair.map { box -> circuits.find { it.contains(box) } }
+    return when {
+        (set1 ?: set2) == null -> circuits + listOf(newPair)
+        set1 != null && set2 == null -> circuits.addElementToSublist(set1, box2)
+        set1 == null && set2 != null -> circuits.addElementToSublist(set2, box1)
+        set1 != null && set1 == set2 -> circuits
+        set1 != null && set2 != null -> circuits.filterNot { circuit -> newPair.any { circuit.contains(it) } } + listOf(
+            set1 + set2
+        )
+
+        else -> throw IllegalArgumentException("Won't happen")
+    }
 }
 
 fun<T> List<List<T>>.addElementToSublist(sublist: List<T>, element: T) = filter { it != sublist }.plusElement(sublist + element)
