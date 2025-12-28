@@ -108,6 +108,11 @@ fun List<String>.transpose(): List<String> {
     }
 }
 
+fun<T> List<T>.getSubsetsOfSize(size: Int): Sequence<List<T>> =
+    if (size == 1) map { listOf(it) }.asSequence() else
+        dropLast(size - 1).asSequence().flatMapIndexed { index, element -> drop(index + 1).getSubsetsOfSize(size - 1).map { it + element } }
+
+
 //fun <T> applyDijksta(nodes: List<T>, edges: Map<T, List<Pair<T, Long>>>, startPoint: T, endPoint: T?) {
 //    val visitedNodes = mutableListOf<Pair<T, Long>>()
 //    val reachableNodes: MutableList<Pair<T, Long>> = mutableListOf(startPoint to 0)
